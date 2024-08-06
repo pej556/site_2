@@ -1,0 +1,25 @@
+@charset "UTF-8";
+body {
+  background: #a11;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/*SCSS는 저렇게 안에 적어도 됨*/
+header {
+  position: fixed;
+  width: 100%;
+}
+header .inner {
+  padding: 0 100px;
+}
+header #logo a {
+  width: 199px;
+  height: 57px;
+  border: 1px solid #000;
+  background: url("../images/logo.png") no-repeat;
+}
