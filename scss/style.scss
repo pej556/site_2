@@ -6,7 +6,7 @@ $main : #20bec6;
 html{ font-family: "Montserrat",'NanumBarunGothic',sans-serif;
 font-size:12px;}
 
-body{background:#a11; line-height:1.6; height:3000px;}
+body{background:#333; line-height:1.6; height:3000px;}
 /*
 1.6 -> 각 영역별 적용된 글자크기에 비례해서 1.6배를 적용
 1.6em -> 현재 body의 글자크기(12px)에 비례해서 1.6배인 19.2px로 적용
@@ -19,6 +19,7 @@ a{display:inline-block; text-decoration:none; color:inherit;}
 
 /*SCSS는 저렇게 안에 적어도 됨*/
 header{position:fixed; width:100%; padding:20px 0; color:#fff;
+    transition:all .3s ease-in-out;
     .inner{padding:0 100px;}
     a:hover{color:$main;} //sns아이콘도 글자라서 header의 a에게 설정
     #logo{
@@ -27,10 +28,17 @@ header{position:fixed; width:100%; padding:20px 0; color:#fff;
         background:url("../images/logo.png") no-repeat;
         background-size:100% auto; text-indent:-9999px;
         transition:all .2s ease-in-out;}
-        a:hover{background-position:0 bottom;}
+        a:hover{background-position:0 bottom !important;}
+        /*로고가 무조건 hover효과가 들어가게 !important 부여*/
     }//end:#logo
-
+    &.scrolled{
+        background:#fff; color:#333; padding:0;
+        border-bottom:1px solid #eee;
+        #logo a{background-position:0 -28px;}
+        #gnb a::after{background:#333;}
+    }//end:.scrolled
 }//end:header
+
 
 #gnb{
     li{float:left; margin-top:8px;}
@@ -39,7 +47,7 @@ header{position:fixed; width:100%; padding:20px 0; color:#fff;
     width:0; height:2px; transition:all .2s ease-in-out;}
     a:hover::after{width:100%;}
     .sub{
-        display:none;
+        display:none; padding-bottom:20px;
         li{float:none; margin:0 0 0 15px;}
         /*영어는 철자가 아니라 단어로 줄바꿈이 됨
         BRAND STORY는 줄바꿈이 되지만 ARCHITECTURE 줄바꿈이 되지 않음*/
@@ -58,3 +66,22 @@ header{position:fixed; width:100%; padding:20px 0; color:#fff;
     li{float:left; margin-top:8px;}
     a{padding:15px 5px;}
 }//end:sns
+
+
+
+
+
+
+
+
+#main_view{
+    .slider{display:flex;
+    .view{width:100%; height:100vh;
+    background:center/cover no-repeat;
+    flex-shrink:0;}
+    //flex-shrink:0 -> 너비가 줄어들지 않게한다
+    @for $i from 1 through 6{ //i가 1~6까지 반복이 됨.
+        .view#{$i}{background-image:url("../images/view0"+$i+".jpg");}
+    }
+    }/*end:slider*/
+}/*end:main_view*/

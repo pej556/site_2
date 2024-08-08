@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  background: #a11;
+  background: #333;
   line-height: 1.6;
   height: 3000px;
 }
@@ -27,6 +27,7 @@ header {
   width: 100%;
   padding: 20px 0;
   color: #fff;
+  transition: all 0.3s ease-in-out;
 }
 header .inner {
   padding: 0 100px;
@@ -37,6 +38,7 @@ header a:hover {
 header #logo {
   margin: 18px 50px 0 15px;
   float: left;
+  /*로고가 무조건 hover효과가 들어가게 !important 부여*/
 }
 header #logo a {
   width: 100px;
@@ -47,7 +49,19 @@ header #logo a {
   transition: all 0.2s ease-in-out;
 }
 header #logo a:hover {
-  background-position: 0 bottom;
+  background-position: 0 bottom !important;
+}
+header.scrolled {
+  background: #fff;
+  color: #333;
+  padding: 0;
+  border-bottom: 1px solid #eee;
+}
+header.scrolled #logo a {
+  background-position: 0 -28px;
+}
+header.scrolled #gnb a::after {
+  background: #333;
 }
 
 #gnb {
@@ -75,6 +89,7 @@ header #logo a:hover {
 }
 #gnb .sub {
   display: none;
+  padding-bottom: 20px;
   /*영어는 철자가 아니라 단어로 줄바꿈이 됨
   BRAND STORY는 줄바꿈이 되지만 ARCHITECTURE 줄바꿈이 되지 않음*/
 }
@@ -108,3 +123,36 @@ header #logo a:hover {
 #sns a {
   padding: 15px 5px;
 }
+
+#main_view {
+  /*end:slider*/
+}
+#main_view .slider {
+  display: flex;
+}
+#main_view .slider .view {
+  width: 100%;
+  height: 100vh;
+  background: center/cover no-repeat;
+  flex-shrink: 0;
+}
+#main_view .slider .view1 {
+  background-image: url("../images/view01.jpg");
+}
+#main_view .slider .view2 {
+  background-image: url("../images/view02.jpg");
+}
+#main_view .slider .view3 {
+  background-image: url("../images/view03.jpg");
+}
+#main_view .slider .view4 {
+  background-image: url("../images/view04.jpg");
+}
+#main_view .slider .view5 {
+  background-image: url("../images/view05.jpg");
+}
+#main_view .slider .view6 {
+  background-image: url("../images/view06.jpg");
+}
+
+/*end:main_view*/
