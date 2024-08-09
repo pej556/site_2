@@ -6,7 +6,7 @@ $main : #20bec6;
 html{ font-family: "Montserrat",'NanumBarunGothic',sans-serif;
 font-size:12px;}
 
-body{background:#333; line-height:1.6; height:3000px;}
+body{line-height:1.6;}
 /*
 1.6 -> 각 영역별 적용된 글자크기에 비례해서 1.6배를 적용
 1.6em -> 현재 body의 글자크기(12px)에 비례해서 1.6배인 19.2px로 적용
@@ -19,7 +19,7 @@ a{display:inline-block; text-decoration:none; color:inherit;}
 
 /*SCSS는 저렇게 안에 적어도 됨*/
 header{position:fixed; width:100%; padding:20px 0; color:#fff;
-    transition:all .3s ease-in-out;
+    transition:all .3s ease-in-out; z-index:100;
     .inner{padding:0 100px;}
     a:hover{color:$main;} //sns아이콘도 글자라서 header의 a에게 설정
     #logo{
@@ -74,14 +74,48 @@ header{position:fixed; width:100%; padding:20px 0; color:#fff;
 
 
 
-#main_view{
+#main_view{position: relative; overflow:hidden; background:#000;
     .slider{display:flex;
     .view{width:100%; height:100vh;
-    background:center/cover no-repeat;
+    background:center/cover no-repeat; position:relative;
     flex-shrink:0;}
     //flex-shrink:0 -> 너비가 줄어들지 않게한다
+    .view::before{content:""; position:absolute; top:0; left:0;
+    right:0; bottom:0; background:#000; opacity:0.5;}
+
     @for $i from 1 through 6{ //i가 1~6까지 반복이 됨.
-        .view#{$i}{background-image:url("../images/view0"+$i+".jpg");}
+        .view#{$i}{background-image:url("../images/view0"+$i+".jpg");}}
     }
-    }/*end:slider*/
+    .text{color:#fff; position:absolute; bottom:120px; left:120px;
+        transform:translateY(50px); opacity:0;
+        transition:all 0.5s ease-in-out;
+
+
+
+        h3{font-size:50px; line-height:1.1; font-weight:normal; font-weight: 300;}
+
+        p{font-size:18px; padding:20px 0; margin-bottom:10px;}
+
+        a{width:150px; height:50px; line-height:50px;
+            //line-height를 높이와 동일하게 하면 수직정렬 가능
+        text-align:center; font-size:14px; border:1px solid #fff;}
+        a:hover{color:#000; background:#fff;}
+
+        i{display:inline-block; vertical-align:-1px; padding-left:6px;}
+
+      
+    }//end:text
+        .swiper-slide-active .text{opacity:1; transform:translateY(0);
+        transition-delay:0.6s;}
+        //딜레이를 여기에 걸어야 나타날때만 딜레이가 걸림
+
+    /*end:slider*/
+    .pager{position:absolute; bottom:16px; left:50%; z-index:10;
+        transform:translateX(-50%); 
+        //translateX로 정확하게 가운데로 정렬할 수 있다.
+        span{display:block; float: left; width:6px; height:6px;
+        margin:0 5px; border-radius:50%; border:1px solid #fff;
+        cursor: pointer; }
+        span.active{background:#fff;}
+    }
 }/*end:main_view*/
