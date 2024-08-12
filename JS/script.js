@@ -26,6 +26,13 @@ const swiper1 = new Swiper('#main_view', {
       bulletActiveClass:'active', //활성화된 요소에 추가되는 클래스
       clickable:true, //클릭시 슬라이드 전환
     },
+
+
+    
+
+
+
+
   });
 
 
